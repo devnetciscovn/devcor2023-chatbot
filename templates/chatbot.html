@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<head>
+    <title>Chatbot</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        #messages-container {
+            width: 80%;
+            max-width: 600px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            overflow-y: auto;
+            max-height: 400px;
+        }
+
+        .message {
+            background-color: #f1f1f1;
+            padding: 5px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .message.sender {
+            background-color: #d3ffd3;
+            align-self: flex-end;
+        }
+
+        .message.sender .user {
+            font-weight: bold;
+            margin-right: 5px;
+        }
+
+        .message .time {
+            font-size: 12px;
+            color: #666;
+        }
+
+        #message-input {
+            width: 80%;
+            max-width: 600px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            margin-top: 20px;
+        }
+
+        #send-button {
+            margin-top: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<main>
+    <div id="messages-container">
+        {% for message in messages: %}
+        {% if message['email'] and message['text']: %}
+        <div class="message">
+            <span>
+                <span class="fw-bold">{{message['email']}}:</span>
+                <span>
+                    {{message['text']}}
+                </span>
+            </span>
+        </div>
+        {% endif %}
+        {% endfor %}
+
+    </div>
+
+    <div class="row mt-5 offset-2">
+        <form action="/send-message-to-bot" method="POST">
+            <div class="col-9">
+                <textarea name="message" id="message-input" cols="300"></textarea>
+                <br>
+                <button class="btn btn-secondary">Send</button>
+            </div>
+        </form>
+    </div>
+</main>
+{% endblock %}

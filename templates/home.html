@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+<main>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-4"></div>
+            <div class="col-4">
+                <div class="row">
+                    <p class="display-6 text-center">Sign in</p>
+                </div>
+                <div class="row text-center">
+                    <a href={{authorize_url}}>
+                        <img src="/static/images/webex.png" width="120" height="60" alt="">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}
